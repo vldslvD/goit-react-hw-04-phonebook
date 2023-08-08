@@ -6,7 +6,9 @@ import { ContactList } from 'components/ContactList/ContactList';
 import { Container } from 'components/App/App.styled';
 
 export const App = () => {
-  const [contacts, setContacts] = useState(() => JSON.parse(localStorage.getItem('contacts')) ?? []);
+  const [contacts, setContacts] = useState(
+    () => JSON.parse(localStorage.getItem('contacts')) ?? []
+  );
   const [filter, setFilter] = useState('');
 
   const addContact = ({ name, number }) => {
@@ -36,14 +38,12 @@ export const App = () => {
     );
   };
   const deleteContact = id => {
-    setContacts(prevState =>
-      prevState.filter(contact => contact.id !== id)
-    );
+    setContacts(prevState => prevState.filter(contact => contact.id !== id));
   };
 
   useEffect(() => {
-     localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts])
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   return (
     <Container>
